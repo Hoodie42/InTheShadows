@@ -12,7 +12,7 @@ public class MouseOverScript : MonoBehaviour
 	private bool isMouseOver = false;
 
 	void Start() {
-		menuScript = GameObject.Find("Menu").GetComponent<MenuScript>();
+		menuScript = GameObject.Find("MenuLogic").GetComponent<MenuScript>();
 		textMesh = GetComponent<TextMesh>();
 	}
 
@@ -22,8 +22,7 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Normal:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Normal Mode");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.goToStageSelection();
 					}
 				} else {
@@ -34,8 +33,9 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Teapot:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Teapot Scene");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						menuScript.objectForm = ObjectForm.Teapot;
+						menuScript.startStage();
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
@@ -45,8 +45,9 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Globe:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Globe Scene");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						menuScript.objectForm = ObjectForm.Globe;
+						menuScript.startStage();
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
@@ -56,8 +57,9 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Fortytwo:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Fortytwo Scene");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						menuScript.objectForm = ObjectForm.Fortytwo;
+						menuScript.startStage();
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
@@ -67,8 +69,9 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Elephant:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Elephant Scene");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						menuScript.objectForm = ObjectForm.Elephant;
+						menuScript.startStage();
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
@@ -81,7 +84,7 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
-				if (Input.GetMouseButtonDown(0) && isMouseOver) {
+				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
 					menuScript.difficulty = Difficulty.Easy;
 				}
 				break;
@@ -92,7 +95,7 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
-				if (Input.GetMouseButtonDown(0) && isMouseOver) {
+				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
 					menuScript.difficulty = Difficulty.Normal;
 				}
 				break;
@@ -103,7 +106,7 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
-				if (Input.GetMouseButtonDown(0) && isMouseOver) {
+				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
 					menuScript.difficulty = Difficulty.Hard;
 				}
 				break;
@@ -111,7 +114,7 @@ public class MouseOverScript : MonoBehaviour
 			case MenuButtonType.Back:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.goToMainMenu();
 					}
 				} else {
@@ -121,8 +124,7 @@ public class MouseOverScript : MonoBehaviour
 			default:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
-					if (Input.GetMouseButtonDown(0)) {
-						Debug.Log("Launch Test Mode");
+					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.goToStageSelection();
 					}
 				} else {
