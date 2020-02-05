@@ -17,7 +17,6 @@ public class MouseOverScript : MonoBehaviour
 	}
 
 	void Update() {
-		// TEXT MESH COLORS
 		switch(buttonType) {
 			case MenuButtonType.Normal:
 				if (isMouseOver) {
