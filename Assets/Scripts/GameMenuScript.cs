@@ -10,6 +10,10 @@ public class GameMenuScript : MonoBehaviour
 	}
 
 	public void goToMainMenu() {
+		GameObject.Find("GameCanvas").GetComponent<Animator>().Play("GameCanvasFadeIn", 0, 0f);
+	}
+
+	public void loadMainMenu() {
 		SceneManager.LoadScene("MainMenu");
 	}
 }
