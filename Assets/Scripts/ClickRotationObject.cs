@@ -26,7 +26,7 @@ public class ClickRotationObject : MonoBehaviour
 	[SerializeField]
 	private bool actionRegistered;
 
-	private Light selfLight;
+	private Renderer meshRenderer;
 	private float rotFork;
 	private float posFork;
 
@@ -38,8 +38,7 @@ public class ClickRotationObject : MonoBehaviour
 		actionRegistered = false;
 		isFocusedOn = false;
 		isInPlace = false;
-		selfLight = transform.Find("light").gameObject.GetComponent<Light>();
-		selfLight.enabled = false;
+		meshRenderer = GetComponentInChildren<Renderer>();
 		rotFork = 20f;
 		posFork = 1f;
 
@@ -125,7 +124,10 @@ public class ClickRotationObject : MonoBehaviour
 	}
 
 	public void setFocus(bool b) {
-		selfLight.enabled = b;
+		if (b)
+			meshRenderer.material = Resources.Load<Material>("Materials/ObjectSelected");
+		else
+			meshRenderer.material = Resources.Load<Material>("Materials/ObjectNotSelected");
 		isFocusedOn = b;
 	}
 
