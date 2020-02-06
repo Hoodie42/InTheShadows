@@ -10,6 +10,7 @@ public class GameMenuScript : MonoBehaviour
 	}
 
 	public void goToMainMenu() {
+		GameObject.Find("Camera").GetComponent<MultipleObjectManager>().playClickSound();
 		GameObject.Find("GameCanvas").GetComponent<Animator>().Play("GameCanvasFadeIn", 0, 0f);
 	}
 

@@ -9,12 +9,14 @@ public class MouseOverScript : MonoBehaviour
 
 	private MenuScript menuScript;
 	private TextMesh textMesh;
+	private AudioSource clickSound;
 	private int progression;
 	private bool isMouseOver = false;
 
 	void Start() {
 		menuScript = GameObject.Find("MenuLogic").GetComponent<MenuScript>();
 		textMesh = GetComponent<TextMesh>();
+		clickSound = GameObject.Find("Main Camera").GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -24,6 +26,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.goToStageSelection(false);
 					}
 				} else {
@@ -35,6 +38,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.objectForm = ObjectForm.Teapot;
 						menuScript.startStage();
 					}
@@ -47,6 +51,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver && (progression >= 2 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.objectForm = ObjectForm.Globe;
 						menuScript.startStage();
 					}
@@ -64,6 +69,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver && (progression >= 3 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.objectForm = ObjectForm.Fortytwo;
 						menuScript.startStage();
 					}
@@ -81,6 +87,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver && (progression >= 1 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.objectForm = ObjectForm.Elephant;
 						menuScript.startStage();
 					}
@@ -98,6 +105,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.goToMainMenu();
 					}
 				} else {
@@ -109,6 +117,7 @@ public class MouseOverScript : MonoBehaviour
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
+						clickSound.Play();
 						menuScript.goToStageSelection(true);
 					}
 				} else {

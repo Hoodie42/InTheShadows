@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MultipleObjectManager : MonoBehaviour
 {
+	public AudioSource clickSound;
+	public AudioSource victorySound;
 	public bool win;
 
 	private GameObject[] objects;
@@ -49,6 +51,7 @@ public class MultipleObjectManager : MonoBehaviour
 		if (!Input.GetMouseButton(0) && !canFocus && !win) {
 			objects[currentObject].GetComponent<ClickRotationObject>().setFocus(false);
 			win = true;
+			victorySound.Play();
 			GameObject.Find("GameCanvas").GetComponent<Animator>().Play("GameCanvasWin", 0, 0f);
 
 			// SAVE PROGRESSION
@@ -81,6 +84,10 @@ public class MultipleObjectManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void playClickSound() {
+		clickSound.Play();
 	}
 
 	private void saveProgession(int i) {
