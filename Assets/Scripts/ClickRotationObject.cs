@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ClickRotationObject : MonoBehaviour
 {
-	public Vector3 desiredRotation;
+	public Vector3[] desiredRotations;
+	public Vector3 positionBetweenObjects;
+	public string pairObject;
+	public bool isFullyRandomized = true;
 	public bool isFocusedOn;
 	public bool isInPlace;
 
@@ -23,6 +26,7 @@ public class ClickRotationObject : MonoBehaviour
 
 	private Light selfLight;
 	private float rotFork;
+	private float posFork;
 
 	void Start() {
 		originalMousePos = Vector3.zero;
@@ -35,19 +39,41 @@ public class ClickRotationObject : MonoBehaviour
 		selfLight = transform.Find("light").gameObject.GetComponent<Light>();
 		selfLight.enabled = false;
 		rotFork = 20f;
+		posFork = 1f;
+
+		if (isFullyRandomized)
+			transform.eulerAngles = new Vector3(Random.Range(45f, 315f), Random.Range(45f, 315f), 0f);
+		else
+			transform.eulerAngles = new Vector3(0f, Random.Range(45f, 315f), 0f);
 	}
 
 	void Update() {
 		//CHECK IF IN PLACE
-		float diffX = Mathf.DeltaAngle(transform.eulerAngles.x, desiredRotation.x);
-		float diffY = Mathf.DeltaAngle(transform.eulerAngles.y, desiredRotation.y);
-		float diffZ = Mathf.DeltaAngle(transform.eulerAngles.z, desiredRotation.z);
-		float difference = Mathf.Abs(diffX) + Mathf.Abs(diffY) + Mathf.Abs(diffZ);
+		foreach(Vector3 desiredRotation in desiredRotations) {
+			float diffX = Mathf.DeltaAngle(transform.eulerAngles.x, desiredRotation.x);
+			float diffY = Mathf.DeltaAngle(transform.eulerAngles.y, desiredRotation.y);
+			float difference = Mathf.Abs(diffX) + Mathf.Abs(diffY);
 
-		if(difference < rotFork) {
-			isInPlace = true;
-		} else {
-			isInPlace = false;
+			if(difference < rotFork) {
+				if (pairObject != "") {
+					Transform otherTransform = GameObject.Find(pairObject).transform;
+					diffX = transform.position.x - otherTransform.position.x;
+					diffY = transform.position.y - otherTransform.position.y;
+
+					if (diffX < positionBetweenObjects.x + posFork && diffX > positionBetweenObjects.x - posFork
+						&& diffY < positionBetweenObjects.y + posFork && diffY > positionBetweenObjects.y - posFork) {
+						isInPlace = true;
+						break;
+					} else {
+						isInPlace = false;
+					}
+				} else {
+					isInPlace = true;
+					break;
+				}
+			} else {
+				isInPlace = false;
+			}
 		}
 
 		// INPUTS
