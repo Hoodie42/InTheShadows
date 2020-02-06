@@ -8,6 +8,8 @@ public class ClickRotationObject : MonoBehaviour
 	public Vector3 positionBetweenObjects;
 	public string pairObject;
 	public bool isFullyRandomized = true;
+	public bool canBeFullyRotated = true;
+	public bool canBeMoved = true;
 	public bool isFocusedOn;
 	public bool isInPlace;
 
@@ -77,14 +79,14 @@ public class ClickRotationObject : MonoBehaviour
 		}
 
 		// INPUTS
-		if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && !actionRegistered && isFocusedOn) {
+		if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift) && canBeMoved && !actionRegistered && isFocusedOn) {
 			isRotHor = false;
 			isRotVer = false;
 			isMov = true;
 			actionRegistered = true;
 			originalMousePos = Input.mousePosition;
 			tempVector = transform.position;
-		} else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftControl) && !actionRegistered && isFocusedOn) {
+		} else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftControl) && canBeFullyRotated && !actionRegistered && isFocusedOn) {
 			isRotHor = false;
 			isRotVer = true;
 			isMov = false;

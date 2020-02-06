@@ -51,6 +51,8 @@ MonoBehaviour:
   positionBetweenObjects: {x: 0, y: 0, z: 0}
   pairObject: 
   isFullyRandomized: 0
+  canBeFullyRotated: 0
+  canBeMoved: 0
   isFocusedOn: 0
   isInPlace: 0
   tempVector: {x: 0, y: 0, z: 0}

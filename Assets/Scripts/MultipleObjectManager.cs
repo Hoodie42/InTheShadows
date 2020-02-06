@@ -40,10 +40,8 @@ public class MultipleObjectManager : MonoBehaviour
 					objectBase.name = "objectBase";
 					break;
 			}
-
 			Destroy(GameObject.Find("MenuLogic"));
 		}
-
 		objects = GameObject.FindGameObjectsWithTag("ShadowForm");
 	}
 
