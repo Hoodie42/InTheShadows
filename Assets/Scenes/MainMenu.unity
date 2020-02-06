@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 85519414}
   - component: {fileID: 85519413}
   m_Layer: 0
-  m_Name: FortytwoUnavailable
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 776076352}
   - component: {fileID: 776076351}
   m_Layer: 0
-  m_Name: TeaPotUnavailable
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1592,9 +1592,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42973aa0acc594cff89799d3f216709c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
   objectForm: 0
   canClick: 0
+  testMode: 0
 --- !u!1 &1035545201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,7 +1750,7 @@ GameObject:
   - component: {fileID: 1054428633}
   - component: {fileID: 1054428632}
   m_Layer: 0
-  m_Name: GlobeUnavailable
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6cb79799e7f4b48945335e0fdc8ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 9
+  buttonType: 6
 --- !u!65 &1863405247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2606,7 +2606,7 @@ GameObject:
   - component: {fileID: 2079926581}
   - component: {fileID: 2079926580}
   m_Layer: 0
-  m_Name: ElephantUnavailable
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

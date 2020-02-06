@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MouseOverScript : MonoBehaviour
 {
-	public enum MenuButtonType{Normal, Test, Teapot, Globe, Fortytwo, Elephant, EasyDifficulty, NormalDifficulty, HardDifficulty, Back};
+	public enum MenuButtonType{Normal, Test, Teapot, Globe, Fortytwo, Elephant, Back};
 	public MenuButtonType buttonType;
 
 	private MenuScript menuScript;
 	private TextMesh textMesh;
+	private int progression;
 	private bool isMouseOver = false;
 
 	void Start() {
@@ -17,12 +18,13 @@ public class MouseOverScript : MonoBehaviour
 	}
 
 	void Update() {
+		progression = PlayerPrefs.GetInt("ItsProgression", 0);
 		switch(buttonType) {
 			case MenuButtonType.Normal:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
-						menuScript.goToStageSelection();
+						menuScript.goToStageSelection(false);
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
@@ -42,7 +44,7 @@ public class MouseOverScript : MonoBehaviour
 				break;
 
 			case MenuButtonType.Globe:
-				if (isMouseOver) {
+				if (isMouseOver && (progression >= 2 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.objectForm = ObjectForm.Globe;
@@ -51,10 +53,15 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
+				if (progression < 2 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
+				} else {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard";
+				}
 				break;
 
 			case MenuButtonType.Fortytwo:
-				if (isMouseOver) {
+				if (isMouseOver && (progression >= 3 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.objectForm = ObjectForm.Fortytwo;
@@ -63,10 +70,15 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
+				if (progression < 3 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
+				} else {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard";
+				}
 				break;
 
 			case MenuButtonType.Elephant:
-				if (isMouseOver) {
+				if (isMouseOver && (progression >= 1 || menuScript.testMode)) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
 						menuScript.objectForm = ObjectForm.Elephant;
@@ -75,38 +87,10 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
-				break;
-
-			case MenuButtonType.EasyDifficulty:
-				if (menuScript.difficulty == Difficulty.Easy) {
-					textMesh.color = new Color(.9f, .9f, .9f);
+				if (progression < 1 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
 				} else {
-					textMesh.color = new Color(.1f, .1f, .1f);
-				}
-				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
-					menuScript.difficulty = Difficulty.Easy;
-				}
-				break;
-
-			case MenuButtonType.NormalDifficulty:
-				if (menuScript.difficulty == Difficulty.Normal) {
-					textMesh.color = new Color(.9f, .9f, .9f);
-				} else {
-					textMesh.color = new Color(.1f, .1f, .1f);
-				}
-				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
-					menuScript.difficulty = Difficulty.Normal;
-				}
-				break;
-
-			case MenuButtonType.HardDifficulty:
-				if (menuScript.difficulty == Difficulty.Hard) {
-					textMesh.color = new Color(.9f, .9f, .9f);
-				} else {
-					textMesh.color = new Color(.1f, .1f, .1f);
-				}
-				if (Input.GetMouseButtonDown(0) && menuScript.canClick && isMouseOver) {
-					menuScript.difficulty = Difficulty.Hard;
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "normal";
 				}
 				break;
 
@@ -120,11 +104,12 @@ public class MouseOverScript : MonoBehaviour
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
 				break;
+
 			default:
 				if (isMouseOver) {
 					textMesh.color = new Color(.9f, .9f, .9f);
 					if (Input.GetMouseButtonDown(0) && menuScript.canClick) {
-						menuScript.goToStageSelection();
+						menuScript.goToStageSelection(true);
 					}
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);

@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Difficulty{Easy, Normal, Hard};
 public enum ObjectForm{Teapot, Elephant, Fortytwo, Globe};
 
 public class MenuScript : MonoBehaviour
 {
-	public Difficulty difficulty;
 	public ObjectForm objectForm;
 	public bool canClick;
+	public bool testMode;
 
 	private Animator menuAnimator;
 
 	void Start() {
-		difficulty = Difficulty.Easy;
 		objectForm = ObjectForm.Teapot;
 		canClick = false;
+		testMode = false;
 		menuAnimator = GameObject.Find("Menu").GetComponent<Animator>();
 
 		DontDestroyOnLoad(gameObject);
 		Invoke("authorizeClick", 5f);
 	}
 
-	public void goToStageSelection() {
+	public void goToStageSelection(bool b) {
 		menuAnimator.Play("MainMenuToStageSelection", 0, 0f);
+		testMode = b;
 	}
 
 	public void goToMainMenu() {

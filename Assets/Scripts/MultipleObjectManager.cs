@@ -50,6 +50,15 @@ public class MultipleObjectManager : MonoBehaviour
 			objects[currentObject].GetComponent<ClickRotationObject>().setFocus(false);
 			win = true;
 			GameObject.Find("GameCanvas").GetComponent<Animator>().Play("GameCanvasWin", 0, 0f);
+
+			// SAVE PROGRESSION
+			if (objects[currentObject].name == "objectTeapot") {
+				saveProgession(1);
+			} else if (objects[currentObject].name == "objectElephant") {
+				saveProgession(2);
+			} else if (objects[currentObject].name == "objectBase" || objects[currentObject].name == "objectGlobe") {
+				saveProgession(3);
+			}
 		} else if (!win) {
 			if (Input.GetMouseButtonDown(1)) {
 				currentObject += 1;
@@ -71,6 +80,12 @@ public class MultipleObjectManager : MonoBehaviour
 					}
 				}
 			}
+		}
+	}
+
+	private void saveProgession(int i) {
+		if (PlayerPrefs.GetInt("ItsProgression", 0) < i) {
+			PlayerPrefs.SetInt("ItsProgression", i);
 		}
 	}
 }

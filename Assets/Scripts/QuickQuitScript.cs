@@ -8,5 +8,8 @@ public class QuickQuitScript : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.Quit();
 		}
+		if (Input.GetKeyDown(KeyCode.R)) {
+			PlayerPrefs.SetInt("ItsProgression", 0);
+		}
 	}
 }
