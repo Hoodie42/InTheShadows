@@ -61,6 +61,8 @@ public class MultipleObjectManager : MonoBehaviour
 				saveProgession(2);
 			} else if (objects[currentObject].name == "objectBase" || objects[currentObject].name == "objectGlobe") {
 				saveProgession(3);
+			} else {
+				saveProgession(4);
 			}
 		} else if (!win) {
 			if (Input.GetMouseButtonDown(1)) {

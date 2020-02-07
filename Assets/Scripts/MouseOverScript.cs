@@ -45,6 +45,11 @@ public class MouseOverScript : MonoBehaviour
 				} else {
 					textMesh.color = new Color(.1f, .1f, .1f);
 				}
+				if (progression > 0 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "easy (done)";
+				} else {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "easy";
+				}
 				break;
 
 			case MenuButtonType.Globe:
@@ -60,6 +65,8 @@ public class MouseOverScript : MonoBehaviour
 				}
 				if (progression < 2 && !menuScript.testMode) {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
+				} else if (progression > 2 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard (done)";
 				} else {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard";
 				}
@@ -78,6 +85,8 @@ public class MouseOverScript : MonoBehaviour
 				}
 				if (progression < 3 && !menuScript.testMode) {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
+				} else if (progression > 3 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard (done)";
 				} else {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "hard";
 				}
@@ -96,6 +105,8 @@ public class MouseOverScript : MonoBehaviour
 				}
 				if (progression < 1 && !menuScript.testMode) {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "unavailable";
+				} else if (progression > 1 && !menuScript.testMode) {
+					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "normal (done)";
 				} else {
 					transform.Find("Status").gameObject.GetComponent<TextMesh>().text = "normal";
 				}
